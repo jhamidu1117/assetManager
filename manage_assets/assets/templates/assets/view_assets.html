@@ -1,0 +1,61 @@
+{% extends 'assets/index.html' %}
+
+
+{% block content %}
+<div class="container">
+	<h1 class="text-center logo my-4">
+		<a>Current asset inventory</a>
+	</h1>
+	<div class="row justify-content-center">
+		<div class="card">
+			<div class="card-body">
+				<a class="btn btn-primary  btn-sm btn-block" href="{% url 'new_asset' %}">add asset to manage</a>
+				<table class="table table-sm">
+					<tr>
+						<th>asset tag</th>
+						<th>SN</th>
+						<th>Manufacturer</th>
+						<th>Description</th>
+						<th>location</th>
+						<th>status</th>
+						<th>Remove</th>
+					</tr>
+					{% for asset in assets %}
+					<tr>
+						<td>
+							{{asset.Tag}}
+						</td>
+						<td>
+							{{asset.Serial_number}}
+						</td>
+						<td>
+							{{asset.Manufacturer}}
+						</td>
+						<td>
+							{{asset.asset_type}}
+						</td>
+						<td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;">
+							<a href="{% url 'home' %}">{{asset.location}}</a>
+							<small class="text-muted d-block">
+								update asset location
+							</small>
+						</td>
+						<td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;">
+							<a href="#">{{asset.status}}</a>
+							<small class="text-muted d-block">
+								update asset status
+							</small>
+						</td>
+						<td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;">
+							This cell has more content.This cell has more content.This cell has more content.This
+							cell has more content.This cell has more content.This cell has more content.
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+			<a class="btn btn-primary  btn-sm btn-block" href="#">check out events</a>
+		</div>
+	</div>
+	{% endblock %}
+
